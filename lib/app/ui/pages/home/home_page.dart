@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
 
                   // bloquea boton de tu locacion
                   myLocationButtonEnabled: true,
+
                   myLocationEnabled: true,
                   zoomControlsEnabled: true,
                   //para los diferentes tipos de vistas
