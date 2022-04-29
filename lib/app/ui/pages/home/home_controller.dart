@@ -24,6 +24,10 @@ class HomeController extends ChangeNotifier {
   late bool _gpsEnable;
   bool get gpsEnable => _gpsEnable;
 
+  StreamSubscription? _gpsSubscription;
+
+  Future<void> turnOnGPS() => Geolocator.openLocationSettings();
+
   void onLongPress(LatLng position) {
     final id = _markers.length.toString();
     final markerId = MarkerId(id);
@@ -46,11 +50,20 @@ class HomeController extends ChangeNotifier {
     _gpsEnable = await Geolocator.isLocationServiceEnabled();
 
     _loading = false;
+
+    _gpsSubscription = Geolocator.getServiceStatusStream().listen(
+      (status) {
+        _gpsEnable = status == ServiceStatus.enabled;
+        notifyListeners();
+      },
+    );
+
     notifyListeners();
   }
 
   @override
   void dispose() {
+    _gpsSubscription?.cancel();
     _markersController.close();
     super.dispose();
   }

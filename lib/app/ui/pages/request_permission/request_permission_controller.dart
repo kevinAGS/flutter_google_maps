@@ -17,7 +17,6 @@ class RequestPermissionController {
 
   Future<void> request() async {
     final status = await _locationPermission.request();
-    print("status $status");
     _notify(status);
   }
 

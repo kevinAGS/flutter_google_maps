@@ -73,7 +73,7 @@ class _RequestPermissionPageState extends State<RequestPermissionPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    print("status $state");
+    //print("status $state");
 
     if (state == AppLifecycleState.resumed && _fromSettings) {
       final status = await _controller.check();
@@ -105,7 +105,7 @@ class _RequestPermissionPageState extends State<RequestPermissionPage>
           height: double.infinity,
           alignment: Alignment.center,
           child: ElevatedButton(
-            child: const Text("Allow"),
+            child: const Text("Permitir Acceso"),
             onPressed: () {
               _controller.request();
             },

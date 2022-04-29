@@ -41,7 +41,8 @@ class HomePage extends StatelessWidget {
 
                   // bloquea boton de tu locacion
                   myLocationButtonEnabled: true,
-                  zoomControlsEnabled: false,
+                  myLocationEnabled: true,
+                  zoomControlsEnabled: true,
                   //para los diferentes tipos de vistas
                   mapType: MapType.hybrid,
 
@@ -58,7 +59,10 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final controller = context.read<HomeController>();
+                        controller.turnOnGPS();
+                      },
                       child: const Text("Encender GPS"),
                     ),
                   ],
